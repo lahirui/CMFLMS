@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - FLMS</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("FLMS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @if (User.IsInRole("SuperAdmin")||User.IsInRole("MainAdmin"))
+                    {
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">User<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                @*DisplayName, ActionMethod, ControllerName*@
+                                <li>@Html.ActionLink("Create User", "Register", "Account")</li>
+                                <li>@Html.ActionLink("Delete User", "Index", "Account")</li>
+                            </ul>
+                        </li>
+                    }
+                    
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Supplier<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            @*DisplayName, ActionMethod, ControllerName*@
+                            <li>@Html.ActionLink("Supplier", "Index", "Suppliers")</li>
+                            <li>@Html.ActionLink("Sup. Category", "Index", "Categories")</li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Features<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            @*DisplayName, ActionMethod, ControllerName*@
+                            <li>@Html.ActionLink("Colour", "Index", "Colours")</li>
+                            <li>@Html.ActionLink("Composition", "Index", "Compositions")</li>
+                            <li>@Html.ActionLink("Construction", "Index", "Constructions")</li>
+                            <li>@Html.ActionLink("Fabric Category", "Index", "FabCatoes")</li>
+                            <li>@Html.ActionLink("Finishing Category", "Index", "FinishCatoes")</li>
+                            <li>@Html.ActionLink("Factory", "Index", "Factories")</li>
+                            <li>@Html.ActionLink("Knit", "Index", "Knits")</li>
+                            <li>@Html.ActionLink("Location", "Index", "Locations")</li>
+                            <li>@Html.ActionLink("Structure", "Index", "Structures")</li>
+                            <li>@Html.ActionLink("Yarn", "Index", "Yarns")</li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Samples<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            @*DisplayName, ActionMethod, ControllerName*@
+                          
+                            @if (User.IsInRole("MainAdmin"))
+                            {
+                                <li>@Html.ActionLink("Enter Samples", "Create", "Fabrics")</li>
+                                <li>@Html.ActionLink("View Samples", "MainAdminView", "Fabrics")</li>
+                            }
+                            else
+                            {
+                                if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                                {
+                                    <li>@Html.ActionLink("Enter Samples", "Create", "Fabrics")</li>
+                                }
+                                <li>@Html.ActionLink("View Samples", "Index", "Fabrics")</li>
+                                @*<li>@Html.ActionLink("View Other samples", "OtherFactoryDetails", "Fabrics")</li>*@
+                            }
+                        </ul>
+                    </li>
+                
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Reports<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            @*DisplayName, ActionMethod, ControllerName*@
+                            @*<li>@Html.ActionLink("Supplier Report", "SupplierView", "Reports")</li>
+                            <li>@Html.ActionLink("Fabric Report", "FabricView", "Reports")</li>*@
+                            <li>@Html.ActionLink("Colour Report", "ColourReport", "Colours")</li>
+                            <li>@Html.ActionLink("Composition Report", "CompositionReport", "Compositions")</li>
+                            <li>@Html.ActionLink("Construction Report", "ConstructionReport", "Constructions")</li>
+                            <li>@Html.ActionLink("Fabric Report", "FabricReport", "Reports")</li>
+                           @*<li>@Html.ActionLink("Fabric Report - To Excel", "FabricReport", "Reports")</li>
+                            <li>@Html.ActionLink("Fabric Report - Multiple Search", "Report", "Fabrics")</li>
+                            <li>@Html.ActionLink("Fabric Report - Multiple Search", "FabricWebReport", "Reports")</li>*@
+                            <li>@Html.ActionLink("Finishing Category Report", "FinishingReport", "FinishCatoes")</li>
+                            <li>@Html.ActionLink("Knit Report", "KnitReport", "Knits")</li>
+                            <li>@Html.ActionLink("Location Report", "LocationReport", "Locations")</li>
+                            <li>@Html.ActionLink("Structure Report", "StructureReport", "Structures")</li>
+                            <li>@Html.ActionLink("Supplier Report", "Report", "Suppliers")</li>
+                            <li>@Html.ActionLink("Yarn Report", "YarnReport", "Yarns")</li>
+                        </ul>
+                    </li>
+               
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; 2017 - @DateTime.Now.Year | Developed by CMSL-IT | All Rights Reserved | Version 1.1.5.0</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

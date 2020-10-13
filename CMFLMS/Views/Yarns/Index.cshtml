@@ -1,0 +1,103 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<CMFLMS.Models.Library.Yarn>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<h4>Yarn Count</h4>
+<script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript" language="javascript"></script>
+<script src="~/Scripts/jquery.table2excel.min.js" type="text/javascript" language="javascript"></script>
+<div class="container">
+    <div class="form-group">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+            <input type="text" id="Search" placeholder="Search View" class="form-control" />
+        </div>
+    </div>
+</div>
+@if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin") || User.IsInRole("MainAdmin"))
+{
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+}
+<p style="color:red"><b>Total Yarn Counts: @ViewBag.count</b></p>
+<script type="text/javascript">
+$(function(){
+    $('button').click(function(){
+        var url = 'data:application/vnd.ms-excel,' + encodeURIComponent($('#tblYar').html())
+        location.href=url
+        return false
+    })
+})
+</script>
+@*<button class="btn btn-success">EXPORT</button>*@
+<div id="tblYar">
+    <br>
+    <table class="table table-striped table-bordered table-hover table-condensed">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().YarnCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Remarks)
+            </th>
+            @if (User.IsInRole("SuperAdmin") || User.IsInRole("MainAdmin"))
+            {
+                <th>
+                    @Html.DisplayName("Action")
+                </th>
+            }
+           
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr class="Search">
+                <td>
+                    @Html.DisplayFor(modelItem => item.YarnCount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Remarks)
+                </td>
+                @if (User.IsInRole("SuperAdmin") || User.IsInRole("MainAdmin"))
+                {
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.YarnId })
+                        @*@Html.ActionLink("Details", "Details", new { id=item.YarnId }) |*@
+                        @*@Html.ActionLink("Delete", "Delete", new { id=item.YarnId })*@
+                    </td>
+                }
+            </tr>
+        }
+
+    </table>
+</div>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        function Contains(text_one, text_two)
+        {
+            if (text_one.indexOf(text_two) != -1)
+                return true;
+        }
+        $("#Search").keyup(function ()
+        {
+            var searchText = $("#Search").val().toLowerCase();
+            $(".Search").each(function()
+            {
+                if (!Contains($(this).text().toLowerCase(), searchText)) {
+                    $(this).hide();
+                }
+                else {
+                    $(this).show();
+                }
+                });
+        });
+    });
+    </script>
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchby = Request.QueryString["searchby"], search = Request.QueryString["search"] }),
+    new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = true })

@@ -1,0 +1,162 @@
+﻿@model CMFLMS.Models.Library.Fabrics
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Fabrics</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Colours.ColourName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Colours.ColourName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Constructions.ConstructionType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Constructions.ConstructionType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Factories.FactoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Factories.FactoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Knits.KnitType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Knits.KnitType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Locationss.LocationName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Locationss.LocationName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Structures.StructureValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Structures.StructureValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Suppliers.SupplierName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Suppliers.SupplierName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Yarns.YarnCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Yarns.YarnCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FabricId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FabricId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Composition)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Composition)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quality)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quality)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WidthInches)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WidthInches)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WidthCm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WidthCm)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AddedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AddedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Weight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Weight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fac)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Remarks)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.FabricsId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

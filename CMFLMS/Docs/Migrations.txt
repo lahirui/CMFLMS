@@ -1,0 +1,44 @@
+﻿===============================================LibraryContext================================================
+Enable-Migrations -ContextTypeName LibraryContext -MigrationsDirectory Migrations\LibraryMigrations
+
+add-migration -ConfigurationTypeName CMFLMS.Migrations.LibraryMigrations.Configuration "FinishingCat"
+
+update-database -ConfigurationTypeName CMFLMS.Migrations.LibraryMigrations.Configuration
+
+=============================================ApplicationDbContext=============================================
+Enable-Migrations -ContextTypeName ApplicationDbContext -MigrationsDirectory Migrations\IdentityMigrations
+
+add-migration -ConfigurationTypeName CMFLMS.Migrations.IdentityMigrations.Configuration "Added_New_Admin_Role_14Crate"
+
+update-database -ConfigurationTypeName CMFLMS.Migrations.IdentityMigrations.Configuration
+
+================================================RolePermissions================================================
+MainAdmin	= Can View Index, Create, Edit & Delete in any factory
+SuperAdmin	= Can View Index, Create, Edit & Delete
+Admin		= Can View Index & Create only 
+User		= Can View Index only
+
+TextBox Exact Match in Gridview
+private void searchTextBox_Leave(object sender, EventArgs e)
+{
+    if (string.IsNullOrEmpty(searchTextBox.Text))
+    {
+        (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = string.Empty;
+    }
+    else
+    {
+        (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = string.Format("Name='{0}'", searchTextBox.Text);
+    }
+}
+TextBox StartsWith  Match in Gridview
+private void searchTextBox_TextChanged(object sender, EventArgs e)
+{
+    (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = string.Format("Name LIKE '{0}%'", searchTextBox.Text);
+}
+TextBox Contains   Match in Gridview
+private void searchTextBox_TextChanged(object sender, EventArgs e)
+{
+    (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = string.Format("Name LIKE '%{0}%'", searchTextBox.Text);
+	// Multi Column Search
+	//(dataGridView1.DataSource as DataTable).DefaultView.RowFilter = string.Format("Name LIKE '%{0}%' OR ID LIKE '%{0}%'", searchTextBox.Text);
+}

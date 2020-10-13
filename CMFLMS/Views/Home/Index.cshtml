@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+<br>
+
+<div class="jumbotron">
+    <p style="text-align:center;"><img src="~/Pictures/Logo.PNG"></p>
+    <h1 style="text-align:center;"><b>FLMS</b></h1>
+    @*<p class="lead"style="text-align:center;"><b><i>(Fabric Library Management System)</i></b></p>*@
+    <h2  style="text-align:center;"><b>Crystal Martin Ceylon Private Limited</b></h2><br>
+ <br>  
+    <div class="row">
+@if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin") || User.IsInRole("MainAdmin"))
+{
+    <div class="col-md-4">
+        <div class="col-md-offset-8 col-md-10">
+            <input type="button" value="Enter Sample" class="btn btn-info" style="padding:20px 40px;  " onclick="@("window.location.href='" + @Url.Action("Create", "Fabrics") + "'");" />
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="col-md-offset-8 col-md-10">
+            <input type="button" value="Fabric Report" class="btn btn-info" style="padding:20px 40px;  " onclick="@("window.location.href='" + @Url.Action("FabricReport", "Reports") + "'");" />
+        </div>
+    </div>
+}
+else
+{
+    <div class="col-md-5">
+        <div class="col-md-offset-12 col-md-10">
+            <input type="button" value="Your Fabric Report" class="btn btn-info" style="padding:20px 40px;  " onclick="@("window.location.href='" + @Url.Action("FabricReport", "Reports") + "'");" />
+        </div>
+    </div>
+}
+    </div>
+    </div>
+
+   

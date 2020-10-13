@@ -1,0 +1,212 @@
+﻿@model IEnumerable<CMFLMS.Models.Library.Fabrics>
+
+@{
+    ViewBag.Title = "Report";
+}
+
+<h2>Fabric Report</h2>
+<script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript" language="javascript"></script>
+<script src="~/Scripts/jquery.table2excel.min.js"type="text/javascript" language="javascript"></script>
+
+<div class="container">
+    <div class="form-group">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+            <input type="text" id="Search" placeholder="Search" class="form-control" />
+        </div>
+    </div>
+</div>
+
+<script>
+                $(document).ready(function () {
+                    function Contains(text_one, text_two) {
+                        if (text_one.indexOf(text_two) != -1)
+                            return true;
+                    }
+                    $("#Search").keyup(function () {
+                        var searchText = $("#Search").val().toLowerCase();
+                        $(".Search").each(function () {
+                            if (!Contains($(this).text().toLowerCase(), searchText)) {
+                                $(this).hide();
+                            }
+                            else {
+                                $(this).show();
+                            }
+                        });
+                    });
+                });
+</script>
+<p style="color:red"><b>Total Fabrics: @ViewBag.count</b></p>
+<script type="text/javascript">
+$(function(){
+    $('button').click(function(){
+        var url = 'data:application/vnd.ms-excel,' + encodeURIComponent($('#tblFab').html())
+        location.href=url
+        return false
+    })
+})
+</script>
+<button class="btn btn-success">EXPORT</button>
+
+@*<input class="btn btn-success" type="button"id="btnExporttoExcel" value="EXPORT"/><br>*@
+    <br>
+<div id="tblFab">
+    <br>
+    <table class="table table-striped table-bordered table-hover table-condensed">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FabricId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Compisition1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Compisition2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Compisition3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Compisition4)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Compisition5)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quality)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WidthInches)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WidthCm)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Weight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Suppliers.SupplierName)
+            </th>
+            <th>
+                @Html.DisplayName("Cons")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Yarns.YarnCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Locationss.LocationName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Knits.KnitType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Structures.StructureValue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Colours.ColourName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Factories.FactoryName)
+            </th>
+            <th>
+                @Html.DisplayName("Last Updated Date")
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Remarks)
+            </th>*@
+           
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr class="Search">
+                <td>
+                    @Html.DisplayFor(modelItem => item.FabricId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Compisition1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Compisition2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Compisition3)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Compisition4)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Compisition5)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quality)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WidthInches)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WidthCm)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Weight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Suppliers.SupplierName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Constructions.ConstructionType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Yarns.YarnCount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Locationss.LocationName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Knits.KnitType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Structures.StructureValue)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Colours.ColourName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Factories.FactoryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddedDate)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Remarks)
+                </td>*@
+            </tr>
+        }
+
+    </table>
+    </div>
+    @*<script type="text/javascript">
+
+        $(function () {
+            $("#btnExporttoExcel").click(function () {
+                $("#tblSup").table2excel({
+                    filename: "Supplier Report.xlsx"
+                });
+            });
+        });
+    </script> 
+<script type="text/javascript">
+    $("#tblSup").table2excel({
+        exclude: ".excludeThisClass",
+        name: "Worksheet Name",
+        filename: "Supplier Report" //do not include extension
+    });
+
+</script>*@  

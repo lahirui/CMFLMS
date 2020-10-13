@@ -1,0 +1,275 @@
+﻿@model CMFLMS.Models.Library.Fabrics
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+ 
+    <div class="form-horizontal">
+        <h4>Fabric Sample</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="row">
+            @*First Column to add data*@
+            <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.FabricId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.FabricId, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.FabricId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Quality, "Quality", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Quality, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Quality, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.WidthInches, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.WidthInches, new { htmlAttributes = new { @class = "form-control", @type="number" } })
+                            @Html.ValidationMessageFor(model => model.WidthInches, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Weight, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Weight, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                            @Html.ValidationMessageFor(model => model.Weight, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Composition1", new { @class = "col-md-2 control-label" })
+                        <div class="col-md-4">
+                            @Html.DropDownList("CompositionName1", (SelectList)ViewBag.Compositions, "-- SELECT ITEM--", htmlAttributes: new { @class = "form-control", @style = "width:190px" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Compisition1, new { htmlAttributes = new { @class = "form-control", @style = "width:80px", @placeholder = "Value", @Value = "0" } })
+                   
+                            @Html.ValidationMessageFor(model => model.Compisition1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Composition2", new { @class = "col-md-2 control-label" })
+                        <div class="col-md-4">
+                            @Html.DropDownList("CompositionName2", (SelectList)ViewBag.Compositions2, "-- SELECT ITEM--", htmlAttributes: new { @class = "form-control", @style = "width:190px" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Compisition2, new { htmlAttributes = new { @class = "form-control", @style = "width:80px", @placeholder = "Value", @Value = "0" } })
+                            @Html.ValidationMessageFor(model => model.Compisition2, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Composition3", new { @class = "col-md-2 control-label" })
+                        <div class="col-md-4">
+                            @Html.DropDownList("CompositionName3", (SelectList)ViewBag.Compositions3, "-- SELECT ITEM--", htmlAttributes: new { @class = "form-control", @style = "width:190px" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Compisition3, new { htmlAttributes = new { @class = "form-control", @style = "width:80px", @placeholder = "Value", @Value = "0" } })
+                            @Html.ValidationMessageFor(model => model.Compisition3, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Composition4", new { @class = "col-md-2 control-label" })
+                        <div class="col-md-4">
+                            @Html.DropDownList("CompositionName4", (SelectList)ViewBag.Compositions4, "-- SELECT ITEM--", htmlAttributes: new { @class = "form-control", @style = "width:190px" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Compisition4, new { htmlAttributes = new { @class = "form-control", @style = "width:80px", @placeholder = "Value", @Value = "0" } })
+                            @Html.ValidationMessageFor(model => model.Compisition4, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Composition5", new { @class = "col-md-2 control-label" })
+                        <div class="col-md-4">
+                            @Html.DropDownList("CompositionName5", (SelectList)ViewBag.Compositions5, "-- SELECT ITEM--", htmlAttributes: new { @class = "form-control", @style = "width:190px" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Compisition5, new { htmlAttributes = new { @class = "form-control", @style = "width:80px", @placeholder = "Value", @Value = "0" } })
+                            @Html.ValidationMessageFor(model => model.Compisition5, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+               
+                </div>
+            @*Second Column to add data*@
+            <div class="col-md-6">
+                @if ((User.IsInRole("MainAdmin"))||(User.IsInRole("SuperAdmin")))
+                {
+                    <div class="form-group">
+                        @Html.Label("Factory Name", new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("FactoryName", (SelectList)ViewBag.FacList, "-- SELECT ITEM --", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.FactoryId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        @Html.Label("Factory", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.FactoryId, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @Value = ViewBag.Factorynewid } })
+                            @*readonly*@
+                            @Html.ValidationMessageFor(model => model.FactoryId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                }
+                <div class="clearfix"></div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SupplierId, "Supplier", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.SupplierId, null, "-- SELECT ITEM --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.SupplierId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ConstructionId, "Construction", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.ConstructionId, null, "-- SELECT ITEM --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ConstructionId,"" , new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.YarnId, "Yarn", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.YarnId, null, "-- SELECT ITEM --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.YarnId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LocationsId, "Locations", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.LocationsId, null, "-- SELECT ITEM --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.LocationsId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.KnitId, "Knit", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.KnitId, null, "-- SELECT ITEM --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.KnitId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.StructureId, "Structure", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.StructureId, null, "-- SELECT ITEM --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.StructureId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ColourId, "Colour", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.ColourId, null, "-- SELECT ITEM --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ColourId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FabCatoId, "Fab Category", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.FabCatoId, null, "-- SELECT ITEM --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.FabCatoId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FinishCatoId, "Finishing Category", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("FinishCatoId", (SelectList)ViewBag.FinCatId, "-- SELECT ITEM --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.FinishCatoId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Remarks, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    
+                    <div class="col-md-4">
+                        @*The column is just to take space in view*@
+                    </div>
+                    <div class="col-md-4">
+                        <input id="btnSubmit" type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                    <div class="col-md-4">
+                        @*The column is just to take space in view*@
+                    </div>
+                   
+                </div>
+              
+            </div>
+        </div>  
+       
+    </div>
+}
+@if (User.IsInRole("MainAdmin"))
+{
+    <div>
+        @Html.ActionLink("Back to List", "MainAdminView")
+    </div>
+}
+else
+{
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script>
+    function factoryNull()
+    {   var facName = document.getElementById("FactoryName")
+    
+            if (facName == "[object HTMLSelectElement]")
+            {
+                alert("Please Select a Factory");
+                $("FabricId").focus();
+
+            }
+            return false;
+        
+        //if ($("FactoryName").val() = null||$("FactoryName").val() =="")
+        //{
+        //    alert("Please select the factory");
+        //    document.getElementById("btnSubmit").disabled = true
+        //}
+        //else
+        //{
+        //     document.getElementById("btnSubmit").disabled = false
+        //}
+           
+    }
+</script>
+}

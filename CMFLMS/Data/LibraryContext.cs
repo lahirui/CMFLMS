@@ -28,6 +28,10 @@ namespace CMFLMS.Data
         public DbSet<CompositionValues> compositionValues { get; set; }
         public DbSet<FinishCato> finishingCato { get; set; }
 
+    
+
+        public DbSet<SourcingType> sourcingTypes { get; set; }
+        public DbSet<ProductCatagory> productCatagories { get; set; }
         // public System.Data.Entity.DbSet<CMFLMS.Models.Library.FinishingCategory> FinishingCategories { get; set; }
     }
 }

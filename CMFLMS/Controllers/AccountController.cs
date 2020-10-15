@@ -228,10 +228,11 @@ namespace CMFLMS.Controllers
         {
             if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin") || User.IsInRole("User") || User.IsInRole("MainAdmin"))
             {
-                //var name = Session["username"].ToString();
-                ViewBag.User = Common.UserName;            }
-            
-            using (var con = new ApplicationDbContext())
+                var name = Session["username"].ToString();
+                //ViewBag.User = Common.UserName;
+                ViewBag.User = Session["username"].ToString();
+            }
+                using (var con = new ApplicationDbContext())
             {
                 ViewBag.count = RoleContext.Users.ToList().Count();
             }

@@ -219,8 +219,10 @@
     <Compile Include="Controllers\KnitsController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductCatagoriesController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\SourcingTypesController.cs" />
     <Compile Include="Controllers\StructuresController.cs" />
     <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -367,6 +369,22 @@
     <Compile Include="Migrations\LibraryMigrations\201906261224063_FinishingCat.Designer.cs">
       <DependentUpon>201906261224063_FinishingCat.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\LibraryMigrations\202010141212114_Added new table Sourcing type with 8 new fields to Fabric Table.cs" />
+    <Compile Include="Migrations\LibraryMigrations\202010141212114_Added new table Sourcing type with 8 new fields to Fabric Table.Designer.cs">
+      <DependentUpon>202010141212114_Added new table Sourcing type with 8 new fields to Fabric Table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\LibraryMigrations\202010141215456_Added new table Product Catagory.cs" />
+    <Compile Include="Migrations\LibraryMigrations\202010141215456_Added new table Product Catagory.Designer.cs">
+      <DependentUpon>202010141215456_Added new table Product Catagory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\LibraryMigrations\202010141219178_Changed New fields as Nullable.cs" />
+    <Compile Include="Migrations\LibraryMigrations\202010141219178_Changed New fields as Nullable.Designer.cs">
+      <DependentUpon>202010141219178_Changed New fields as Nullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\LibraryMigrations\202010150620077_iS DELETED NULLABLE.cs" />
+    <Compile Include="Migrations\LibraryMigrations\202010150620077_iS DELETED NULLABLE.Designer.cs">
+      <DependentUpon>202010150620077_iS DELETED NULLABLE.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\LibraryMigrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -381,6 +399,8 @@
     <Compile Include="Models\Library\FinishCato.cs" />
     <Compile Include="Models\Library\Knit.cs" />
     <Compile Include="Models\Library\Locations.cs" />
+    <Compile Include="Models\Library\ProductCatagory.cs" />
+    <Compile Include="Models\Library\SourcingType.cs" />
     <Compile Include="Models\Library\Structure.cs" />
     <Compile Include="Models\Library\Supplier.cs" />
     <Compile Include="Models\Library\UserEdit .cs" />
@@ -813,6 +833,16 @@
     <Content Include="Views\FinishCatoes\Index.cshtml" />
     <Content Include="Views\FinishCatoes\FinishingReport.cshtml" />
     <Content Include="Views\Reports\FabricWebReport.cshtml" />
+    <Content Include="Views\ProductCatagories\Create.cshtml" />
+    <Content Include="Views\ProductCatagories\Delete.cshtml" />
+    <Content Include="Views\ProductCatagories\Details.cshtml" />
+    <Content Include="Views\ProductCatagories\Edit.cshtml" />
+    <Content Include="Views\ProductCatagories\Index.cshtml" />
+    <Content Include="Views\SourcingTypes\Create.cshtml" />
+    <Content Include="Views\SourcingTypes\Delete.cshtml" />
+    <Content Include="Views\SourcingTypes\Details.cshtml" />
+    <Content Include="Views\SourcingTypes\Edit.cshtml" />
+    <Content Include="Views\SourcingTypes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -925,6 +955,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\LibraryMigrations\201906261224063_FinishingCat.resx">
       <DependentUpon>201906261224063_FinishingCat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\LibraryMigrations\202010141212114_Added new table Sourcing type with 8 new fields to Fabric Table.resx">
+      <DependentUpon>202010141212114_Added new table Sourcing type with 8 new fields to Fabric Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\LibraryMigrations\202010141215456_Added new table Product Catagory.resx">
+      <DependentUpon>202010141215456_Added new table Product Catagory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\LibraryMigrations\202010141219178_Changed New fields as Nullable.resx">
+      <DependentUpon>202010141219178_Changed New fields as Nullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\LibraryMigrations\202010150620077_iS DELETED NULLABLE.resx">
+      <DependentUpon>202010150620077_iS DELETED NULLABLE.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\FabricReportWizard.rdlc" />
   </ItemGroup>

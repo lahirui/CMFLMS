@@ -19,7 +19,7 @@ namespace CMFLMS
         public string exception;
         public string user;
         public string errorMessage;
-        public static string UserName;
+        //public static string UserName;
         public bool ConnectDB()
         {
             if (string.IsNullOrEmpty(conSQL.ConnectionString))

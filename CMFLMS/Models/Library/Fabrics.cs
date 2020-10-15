@@ -87,8 +87,25 @@ namespace CMFLMS.Models.Library
         [Display(Name = "Finishing Category")]
         public int FinishCatoId { get; set; }
         public FinishCato FinCategory { get; set; }
-        //public FinishingCategory FinishingCategory { get; set; }
+       
         public string Remarks { get; set; }
+
+        public int? SourcingTypeId { get; set; }
+        public SourcingType SourceTypes { get; set; }
+
+        
+
+        public bool? SourcingRoute { get; set; }
+
+        public decimal? LeadTime { get; set; }
+        public bool? SustainableProduct { get; set; }
+        public decimal? YarnGuage { get; set; }
+        public bool? IsDeleted { get; set; }
+        public DateTime? DeletedDate { get; set; }
+
+        public int? ProductCatagoryId { get; set; }
+        public ProductCatagory ProdCatagories { get; set; }
+
 
 
     }

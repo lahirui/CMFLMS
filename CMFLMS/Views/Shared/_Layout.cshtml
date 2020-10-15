@@ -56,6 +56,8 @@
                             <li>@Html.ActionLink("Location", "Index", "Locations")</li>
                             <li>@Html.ActionLink("Structure", "Index", "Structures")</li>
                             <li>@Html.ActionLink("Yarn", "Index", "Yarns")</li>
+                            <li>@Html.ActionLink("Product Catagories", "Index", "ProductCatagories")</li>
+                            <li>@Html.ActionLink("Sourcing Types", "Index", "SourcingTypes")</li>
                         </ul>
                     </li>
 
@@ -108,13 +110,23 @@
             </div>
         </div>
     </div>
+
     <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; 2017 - @DateTime.Now.Year | CMSL-IT | Version 2.0</p>
+        </footer>
+    </div>
+
+    @*<div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
             <p>&copy; 2017 - @DateTime.Now.Year | Developed by CMSL-IT | All Rights Reserved | Version 1.1.5.0</p>
         </footer>
-    </div>
+    </div>*@
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

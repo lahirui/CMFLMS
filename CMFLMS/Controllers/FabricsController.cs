@@ -50,7 +50,8 @@ namespace CMFLMS.Controllers
             {
                 DataSet Users = new DataSet();
                 string FactoryName;
-                Users = ComFabricSample.ReturnDataset("SELECT UserName, FactoryId FROM AspNetUsers WHERE UserName ='" + Common.UserName + "'");
+                var UserName = Session["username"].ToString();
+                Users = ComFabricSample.ReturnDataset("SELECT UserName, FactoryId FROM AspNetUsers WHERE UserName ='" + UserName + "'");
                 FactoryName = Users.Tables[0].Rows[0].ItemArray.GetValue(1).ToString();
                 DataSet FactoryId2 = new DataSet();
                 int FacId2;
@@ -68,7 +69,7 @@ namespace CMFLMS.Controllers
         }
         public ActionResult MainAdminView()
         {
-            var fabrics = db.fabrics.Include(f => f.Colours).Include(f => f.Constructions).Include(f => f.Knits).Include(f => f.Locationss).Include(f => f.Structures).Include(f => f.Suppliers).Include(f => f.Yarns).Include(f => f.Factories).Include(f => f.FabCats).OrderBy(f => f.FabricsId);//
+            var fabrics = db.fabrics.Include(f => f.Colours).Include(f => f.Constructions).Include(f => f.Knits).Include(f => f.Locationss).Include(f => f.Structures).Include(f => f.Suppliers).Include(f => f.Yarns).Include(f => f.Factories).Include(f => f.FabCats).Where(f=>f.IsDeleted==false).OrderBy(f => f.FabricId);//
             try
             {
                 using (var con = new LibraryContext())
@@ -78,9 +79,11 @@ namespace CMFLMS.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Error = ex;
+                ViewBag.Error = ex.ToString();
+                var UserName = Session["username"].ToString();
                 ComFabSam.exception = Convert.ToString(ex);
-                ComFabSam.user = Common.UserName;
+                ComFabSam.user = UserName;
+                //ComFabSam.user = Common.UserName;
                 //ComFabSam.user = Session["username"].ToString();
                 ComFabSam.MailSend();
                 RedirectToAction("FabricError");
@@ -91,7 +94,7 @@ namespace CMFLMS.Controllers
         public ActionResult Index()
         {
            
-                var fabrics = db.fabrics.Include(f => f.Colours).Include(f => f.Constructions).Include(f => f.Knits).Include(f => f.Locationss).Include(f => f.Structures).Include(f => f.Suppliers).Include(f => f.Yarns).Include(f => f.Factories).Include(f => f.FabCats).Include(f=>f.FinCategory).OrderBy(f => f.FabricsId);//
+                var fabrics = db.fabrics.Include(f => f.Colours).Include(f => f.Constructions).Include(f => f.Knits).Include(f => f.Locationss).Include(f => f.Structures).Include(f => f.Suppliers).Include(f => f.Yarns).Include(f => f.Factories).Include(f => f.FabCats).Include(f=>f.FinCategory).Where(f => f.IsDeleted == false).OrderBy(f => f.FabricId);//
 
             try
             {
@@ -113,9 +116,11 @@ namespace CMFLMS.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Error = ex;
+                ViewBag.Error = ex.Message.ToString();
                 ComFabSam.exception = Convert.ToString(ex);
-                ComFabSam.user = Common.UserName;
+                var UserName = Session["username"].ToString();
+                ComFabSam.user = UserName;
+                //ComFabSam.user = Common.UserName;
                 //ComFabSam.user = Session["username"].ToString();
                 ComFabSam.MailSend();
                 RedirectToAction("FabricError");
@@ -127,8 +132,10 @@ namespace CMFLMS.Controllers
         //////Get : Fabrics of other Factories
         public ActionResult OtherFactoryDetails(int? page)
         {
-            var fabrics = db.fabrics.Include(f => f.Colours).Include(f => f.Constructions).Include(f => f.Knits).Include(f => f.Locationss).Include(f => f.Structures).Include(f => f.Suppliers).Include(f => f.Yarns).Include(f => f.Factories).Include(f => f.FabCats).OrderBy(f => f.FabricsId);//
-            var secondUser = Common.UserName;
+            var fabrics = db.fabrics.Include(f => f.Colours).Include(f => f.Constructions).Include(f => f.Knits).Include(f => f.Locationss).Include(f => f.Structures).Include(f => f.Suppliers).Include(f => f.Yarns).Include(f => f.Factories).Include(f => f.FabCats).Where(f => f.IsDeleted == false).OrderBy(f => f.FabricId);//
+                                                                                                                                                                                                                                                                                                   //var secondUser = Common.UserName;
+            var UserName = Session["username"].ToString();
+            var secondUser = UserName;
             //var secondUser = Session["username"].ToString();
             using (var con = new LibraryContext())
             {
@@ -198,7 +205,9 @@ namespace CMFLMS.Controllers
                 ViewBag.Compositions2 = new SelectList(db.compositions.OrderBy(c => c.CompositionName), "CompositionName", "CompositionName");
                 ViewBag.Compositions3 = new SelectList(db.compositions.OrderBy(c => c.CompositionName), "CompositionName", "CompositionName");
                 ViewBag.Compositions4 = new SelectList(db.compositions.OrderBy(c => c.CompositionName), "CompositionName", "CompositionName");
-                ViewBag.Compositions5 = new SelectList(db.compositions.OrderBy(c => c.CompositionName), "CompositionName", "CompositionName");
+                // ViewBag.Compositions5 = new SelectList(db.compositions.OrderBy(c => c.CompositionName), "CompositionName", "CompositionName");
+                ViewBag.ProductCatagoryId = new SelectList(db.productCatagories.Where(p=>p.IsDeleted==false).OrderBy(p => p.ProductCatagoryName), "ProductCatagoryId", "ProductCatagoryName");
+                ViewBag.SourcingTypeId = new SelectList(db.sourcingTypes.Where(s=>s.IsDeleted==false).OrderBy(s => s.SourcingTypeName), "SourcingTypeId", "SourcingTypeName");
 
 
                 if ((User.IsInRole("MainAdmin"))||(User.IsInRole("SuperAdmin")))
@@ -210,7 +219,8 @@ namespace CMFLMS.Controllers
                     DataSet DSUser = new DataSet();
                     DataSet DSFac = new DataSet();
                     Common ComFAb = new Common();
-                    var UserName = Common.UserName;
+                    //var UserName = Common.UserName;
+                    var UserName = Session["username"].ToString();
                     //var UserName = Session["username"].ToString();
                     var FacName = "";
                     DSUser = ComFAb.ReturnDataset("SELECT Email, UserName, FactoryId FROM AspNetUsers WHERE UserName ='" + UserName + "'");
@@ -241,7 +251,7 @@ namespace CMFLMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "FabricsId,FabricId,SupplierId,Compisition1,Compisition2,Compisition3,Compisition4,Compisition5,Quality,ConstructionId,YarnId,WidthInches,WidthCm,AddedDate,Weight,Price,LocationsId,KnitId,StructureId,ColourId,FactoryId,FabCatoId,Remarks,FinishCatoId")] Fabrics fabrics)
+        public ActionResult Create([Bind(Include = "FabricsId,FabricId,SupplierId,Compisition1,Compisition2,Compisition3,Compisition4,Compisition5,Quality,ConstructionId,YarnId,WidthInches,WidthCm,AddedDate,Weight,Price,LocationsId,KnitId,StructureId,ColourId,FactoryId,FabCatoId,Remarks,FinishCatoId,SourcingTypeId,SourcingRoute,LeadTime,SustainableProduct,YarnGuage,IsDeleted,DeletedDate,ProductCatagoryId")] Fabrics fabrics)
             {
 
             var errors = ModelState.Where(x => x.Value.Errors.Count > 0).Select(x => new { x.Key, x.Value.Errors }).ToArray();
@@ -259,13 +269,14 @@ namespace CMFLMS.Controllers
                     double Com2;
                     double Com3;
                     double Com4;
-                    double Com5;
+                    //double Com5;
                     Double.TryParse(StrComp1, out Com1);
                     Double.TryParse(StrComp2, out Com2);
                     Double.TryParse(StrComp3, out Com3);
                     Double.TryParse(StrComp4, out Com4);
-                    Double.TryParse(StrComp5, out Com5);
-                    double TotCom = Com1 + Com2 + Com3 + Com4 + Com5;
+                    //Double.TryParse(StrComp5, out Com5);
+                    //double TotCom = Com1 + Com2 + Com3 + Com4 + Com5;
+                    double TotCom = Com1 + Com2 + Com3 + Com4;
 
 
                     if (TotCom <= 0)
@@ -316,28 +327,92 @@ namespace CMFLMS.Controllers
                         var composit2 = Request.Form["CompositionName2"].ToString();
                         var composit3 = Request.Form["CompositionName3"].ToString();
                         var composit4 = Request.Form["CompositionName4"].ToString();
-                        var composit5 = Request.Form["CompositionName5"].ToString();
-                        if ((composit1 == composit2 && composit1 != "" && composit2 != "") || (composit1 == composit3 && composit3 != "") || (composit1 == composit4 && composit4 != "") || (composit1 == composit5 && composit5 != ""))
+                        //var composit5 = Request.Form["CompositionName5"].ToString();
+                        //if ((composit1 == composit2 && composit1 != "" && composit2 != "") || (composit1 == composit3 && composit3 != "") || (composit1 == composit4 && composit4 != "") || (composit1 == composit5 && composit5 != ""))
+                        //{
+                        //    return RedirectToAction("CompositionSelected");
+                        //}
+                        //if ((composit2 == composit1 && composit2 != "" && composit1 != "") || (composit2 == composit3 && composit3 != "") || (composit2 == composit4 && composit4 != "") || (composit2 == composit5 && composit5 != ""))
+                        //{
+                        //    return RedirectToAction("CompositionSelected");
+                        //}
+                        //if ((composit3 == composit1 && composit3 != "" && composit1 != "") || (composit3 == composit2 && composit2 != "") || (composit3 == composit4 && composit4 != "") || (composit2 == composit5 && composit5 != ""))
+                        //{
+                        //    return RedirectToAction("CompositionSelected");
+                        //}
+                        //if ((composit4 == composit1 && composit4 != "" && composit1 != "") || (composit4 == composit2 && composit2 != "") || (composit4 == composit3 && composit3 != "") || (composit4 == composit5 && composit5 != ""))
+                        //{
+                        //    return RedirectToAction("CompositionSelected");
+
+                        //}
+                        //if ((composit5 == composit1 && composit5 != "" && composit1 != "") || (composit5 == composit2 && composit2 != "") || (composit5 == composit3 && composit3 != "") || (composit5 == composit4 && composit4 != ""))
+                        //{
+                        //    return RedirectToAction("CompositionSelected");
+                        //}
+
+
+                        //if (composit1 == "" || composit1 == "N/A" || composit1 == "n/a" || fabrics.Compisition1 == null || fabrics.Compisition1 == "0")
+                        //{
+                        //    fabrics.Compisition1 = "N/A";
+                        //}
+                        //else
+                        //{
+                        //    fabrics.Compisition1 = composit1 + " " + "-" + " " + fabrics.Compisition1 + "%";
+                        //}
+                        //if (composit2 == "" || composit2 == "N/A" || composit2 == "n/a" || fabrics.Compisition2 == null || fabrics.Compisition2 == "0")
+                        //{
+                        //    fabrics.Compisition2 = "N/A";
+                        //}
+                        //else
+                        //{
+                        //    fabrics.Compisition2 = composit2 + " " + "-" + " " + fabrics.Compisition2 + "%";
+                        //}
+                        //if (composit3 == "" || composit3 == "N/A" || composit3 == "n/a" || fabrics.Compisition3 == null || fabrics.Compisition3 == "0")
+                        //{
+                        //    fabrics.Compisition3 = "N/A";
+                        //}
+                        //else
+                        //{
+                        //    fabrics.Compisition3 = composit3 + " " + "-" + " " + fabrics.Compisition3 + "%";
+                        //}
+                        //if (composit4 == "" || composit4 == "N/A" || composit4 == "n/a" || fabrics.Compisition4 == null || fabrics.Compisition4 == "0")
+                        //{
+                        //    fabrics.Compisition4 = "N/A";
+                        //}
+                        //else
+                        //{
+                        //    fabrics.Compisition4 = composit4 + " " + "-" + " " + fabrics.Compisition4 + "%";
+                        //}
+                        //if (composit5 == "" || composit5 == "N/A" || composit5 == "n/a" || fabrics.Compisition5 == null || fabrics.Compisition5 == "0")
+                        //{
+                        //    fabrics.Compisition5 = "N/A";
+                        //}
+                        //else
+                        //{
+                        //    fabrics.Compisition5 = composit5 + " " + "-" + " " + fabrics.Compisition5 + "%";
+                        //}
+
+                        if ((composit1 == composit2 && composit1 != "" && composit2 != "") || (composit1 == composit3 && composit3 != "") || (composit1 == composit4 && composit4 != "") )
                         {
                             return RedirectToAction("CompositionSelected");
                         }
-                        if ((composit2 == composit1 && composit2 != "" && composit1 != "") || (composit2 == composit3 && composit3 != "") || (composit2 == composit4 && composit4 != "") || (composit2 == composit5 && composit5 != ""))
+                        if ((composit2 == composit1 && composit2 != "" && composit1 != "") || (composit2 == composit3 && composit3 != "") || (composit2 == composit4 && composit4 != "") )
                         {
                             return RedirectToAction("CompositionSelected");
                         }
-                        if ((composit3 == composit1 && composit3 != "" && composit1 != "") || (composit3 == composit2 && composit2 != "") || (composit3 == composit4 && composit4 != "") || (composit2 == composit5 && composit5 != ""))
+                        if ((composit3 == composit1 && composit3 != "" && composit1 != "") || (composit3 == composit2 && composit2 != "") || (composit3 == composit4 && composit4 != "") )
                         {
                             return RedirectToAction("CompositionSelected");
                         }
-                        if ((composit4 == composit1 && composit4 != "" && composit1 != "") || (composit4 == composit2 && composit2 != "") || (composit4 == composit3 && composit3 != "") || (composit4 == composit5 && composit5 != ""))
+                        if ((composit4 == composit1 && composit4 != "" && composit1 != "") || (composit4 == composit2 && composit2 != "") || (composit4 == composit3 && composit3 != "") )
                         {
                             return RedirectToAction("CompositionSelected");
 
                         }
-                        if ((composit5 == composit1 && composit5 != "" && composit1 != "") || (composit5 == composit2 && composit2 != "") || (composit5 == composit3 && composit3 != "") || (composit5 == composit4 && composit4 != ""))
-                        {
-                            return RedirectToAction("CompositionSelected");
-                        }
+                        //if ((composit5 == composit1 && composit5 != "" && composit1 != "") || (composit5 == composit2 && composit2 != "") || (composit5 == composit3 && composit3 != "") || (composit5 == composit4 && composit4 != ""))
+                        //{
+                        //    return RedirectToAction("CompositionSelected");
+                        //}
 
 
                         if (composit1 == "" || composit1 == "N/A" || composit1 == "n/a" || fabrics.Compisition1 == null || fabrics.Compisition1 == "0")
@@ -372,16 +447,16 @@ namespace CMFLMS.Controllers
                         {
                             fabrics.Compisition4 = composit4 + " " + "-" + " " + fabrics.Compisition4 + "%";
                         }
-                        if (composit5 == "" || composit5 == "N/A" || composit5 == "n/a" || fabrics.Compisition5 == null || fabrics.Compisition5 == "0")
-                        {
-                            fabrics.Compisition5 = "N/A";
-                        }
-                        else
-                        {
-                            fabrics.Compisition5 = composit5 + " " + "-" + " " + fabrics.Compisition5 + "%";
-                        }
+                        //if (composit5 == "" || composit5 == "N/A" || composit5 == "n/a" || fabrics.Compisition5 == null || fabrics.Compisition5 == "0")
+                        //{
+                        //    fabrics.Compisition5 = "N/A";
+                        //}
+                        //else
+                        //{
+                        //    fabrics.Compisition5 = composit5 + " " + "-" + " " + fabrics.Compisition5 + "%";
+                        //}
 
-
+                        fabrics.IsDeleted = Convert.ToBoolean("FALSE");
                         db.fabrics.Add(fabrics);
                         db.SaveChanges();
                         if (User.IsInRole("MainAdmin"))
@@ -409,13 +484,17 @@ namespace CMFLMS.Controllers
                 ViewBag.Compositions2 = new SelectList(db.compositions.OrderBy(c => c.CompositionName), "CompositionName", "CompositionName");
                 ViewBag.Compositions3 = new SelectList(db.compositions.OrderBy(c => c.CompositionName), "CompositionName", "CompositionName");
                 ViewBag.Compositions4 = new SelectList(db.compositions.OrderBy(c => c.CompositionName), "CompositionName", "CompositionName");
-                ViewBag.Compositions5 = new SelectList(db.compositions.OrderBy(c => c.CompositionName), "CompositionName", "CompositionName");
+                //ViewBag.Compositions5 = new SelectList(db.compositions.OrderBy(c => c.CompositionName), "CompositionName", "CompositionName");
+                ViewBag.ProductCatagoryId = new SelectList(db.productCatagories.Where(p => p.IsDeleted == false).OrderBy(p => p.ProductCatagoryName), "ProductCatagoryId", "ProductCatagoryName",fabrics.ProductCatagoryId);
+                ViewBag.SourcingTypeId = new SelectList(db.sourcingTypes.Where(s => s.IsDeleted == false).OrderBy(s => s.SourcingTypeName), "SourcingTypeId", "SourcingTypeName",fabrics.SourcingTypeId);
             }
             catch (Exception ex)
             {
                 ViewBag.Error = ex;
                 ComFabSam.exception= Convert.ToString(ex);
-                ComFabSam.user = Common.UserName;
+                //ComFabSam.user = Common.UserName;
+                var UserName = Session["username"].ToString();
+                ComFabSam.user = UserName;
                 //ComFabSam.user = Session["username"].ToString();
                 ComFabSam.MailSend();
                 RedirectToAction("FabricError");
@@ -472,7 +551,9 @@ namespace CMFLMS.Controllers
                 ViewBag.Compositions2 = new SelectList(db.compositions.OrderBy(c => c.CompositionName), "CompositionName", "CompositionName");
                 ViewBag.Compositions3 = new SelectList(db.compositions.OrderBy(c => c.CompositionName), "CompositionName", "CompositionName");
                 ViewBag.Compositions4 = new SelectList(db.compositions.OrderBy(c => c.CompositionName), "CompositionName", "CompositionName");
-                ViewBag.Compositions5 = new SelectList(db.compositions.OrderBy(c => c.CompositionName), "CompositionName", "CompositionName");
+                //ViewBag.Compositions5 = new SelectList(db.compositions.OrderBy(c => c.CompositionName), "CompositionName", "CompositionName");
+                ViewBag.ProductCatagoryId = new SelectList(db.productCatagories.Where(p => p.IsDeleted == false).OrderBy(p => p.ProductCatagoryName), "ProductCatagoryId", "ProductCatagoryName", fabrics.ProductCatagoryId);
+                ViewBag.SourcingTypeId = new SelectList(db.sourcingTypes.Where(s => s.IsDeleted == false).OrderBy(s => s.SourcingTypeName), "SourcingTypeId", "SourcingTypeName", fabrics.SourcingTypeId);
                 //if (User.IsInRole("MainAdmin"))
                 //{
                 //    Fabrics fab = new Fabrics();
@@ -509,7 +590,9 @@ namespace CMFLMS.Controllers
             {
                 ViewBag.Error = ex;
                 ComFabSam.exception = Convert.ToString(ex);
-                ComFabSam.user = Common.UserName;
+                var UserName = Session["username"].ToString();
+                ComFabSam.user = UserName;
+                //ComFabSam.user = Common.UserName;
                 //ComFabSam.user = Session["username"].ToString();
                 ComFabSam.MailSend();
                 RedirectToAction("FabricError");
@@ -523,7 +606,7 @@ namespace CMFLMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "FabricsId,FabricId,SupplierId,Compisition1,Compisition2,Compisition3,Compisition4,Compisition5,Quality,ConstructionId,YarnId,WidthInches,WidthCm,AddedDate,Weight,Price,LocationsId,KnitId,StructureId,ColourId,FactoryId,Fac,FabCatoId,FinishCatoId,Remarks")] Fabrics fabrics)
+        public ActionResult Edit([Bind(Include = "FabricsId,FabricId,SupplierId,Compisition1,Compisition2,Compisition3,Compisition4,Compisition5,Quality,ConstructionId,YarnId,WidthInches,WidthCm,AddedDate,Weight,Price,LocationsId,KnitId,StructureId,ColourId,FactoryId,Fac,FabCatoId,FinishCatoId,Remarks,SourcingTypeId,SourcingRoute,LeadTime,SustainableProduct,YarnGuage,IsDeleted,DeletedDate,ProductCatagoryId")] Fabrics fabrics)
         {
             var errors = ModelState.Where(x => x.Value.Errors.Count > 0).Select(x => new { x.Key, x.Value.Errors }).ToArray();
 
@@ -540,13 +623,14 @@ namespace CMFLMS.Controllers
                     double Com2;
                     double Com3;
                     double Com4;
-                    double Com5;
+                    //double Com5;
                     Double.TryParse(StrComp1, out Com1);//converting string compositions to Double
                     Double.TryParse(StrComp2, out Com2);
                     Double.TryParse(StrComp3, out Com3);
                     Double.TryParse(StrComp4, out Com4);
-                    Double.TryParse(StrComp5, out Com5);
-                    double TotCom = Com1 + Com2 + Com3 + Com4 + Com5;// checks values in composition textboxes
+                    //Double.TryParse(StrComp5, out Com5);
+                    //double TotCom = Com1 + Com2 + Com3 + Com4 + Com5;
+                    double TotCom = Com1 + Com2 + Com3 + Com4;// checks values in composition textboxes
 
                     DataSet DatCompo = new DataSet();
                     Common ComCompo = new Common();
@@ -554,7 +638,7 @@ namespace CMFLMS.Controllers
                     var RetCom2 = "";
                     var RetCom3 = "";
                     var RetCom4 = "";
-                    var RetCom5 = "";
+                    //var RetCom5 = "";
                     //Return compositions already saved in DB
                     DatCompo = ComCompo.ReturnDataset("SELECT FabricId,Compisition1,Compisition2,Compisition3,Compisition4,Compisition5 FROM Fabrics WHERE FabricId = '" + fabrics.FabricId + "'");
                     if (DatCompo.Tables[0].Rows.Count > 0)
@@ -563,7 +647,7 @@ namespace CMFLMS.Controllers
                         RetCom2 = DatCompo.Tables[0].Rows[0].ItemArray.GetValue(2).ToString();
                         RetCom3 = DatCompo.Tables[0].Rows[0].ItemArray.GetValue(3).ToString();
                         RetCom4 = DatCompo.Tables[0].Rows[0].ItemArray.GetValue(4).ToString();
-                        RetCom5 = DatCompo.Tables[0].Rows[0].ItemArray.GetValue(5).ToString();
+                       // RetCom5 = DatCompo.Tables[0].Rows[0].ItemArray.GetValue(5).ToString();
                     }
                     //Below code returns all the numbers in a string
                     //var checkCompoPresentage1 = string.Join(string.Empty, Regex.Matches(RetCom1, @"\d+").OfType<Match>().Select(comp1 => comp1.Value));
@@ -584,11 +668,11 @@ namespace CMFLMS.Controllers
                     double CheckCompoPreStr4;
                     Double.TryParse(checkCompoPresentage4, out CheckCompoPreStr4);
 
-                    var checkCompoPresentage5 = Regex.Match(RetCom5, @"\d+").Value;
-                    double CheckCompoPreStr5;
-                    Double.TryParse(checkCompoPresentage5, out CheckCompoPreStr5);
-
-                    double CheckedCompoPresentage = CheckCompoPreStr1 + CheckCompoPreStr2 + CheckCompoPreStr3 + CheckCompoPreStr4 + CheckCompoPreStr5;
+                    //var checkCompoPresentage5 = Regex.Match(RetCom5, @"\d+").Value;
+                    //double CheckCompoPreStr5;
+                    //Double.TryParse(checkCompoPresentage5, out CheckCompoPreStr5);
+                    //double CheckedCompoPresentage = CheckCompoPreStr1 + CheckCompoPreStr2 + CheckCompoPreStr3 + CheckCompoPreStr4 + CheckCompoPreStr5;
+                    double CheckedCompoPresentage = CheckCompoPreStr1 + CheckCompoPreStr2 + CheckCompoPreStr3 + CheckCompoPreStr4;
 
                     var ToatlAfterEdit = TotCom + CheckedCompoPresentage;
                     //if (ToatlAfterEdit > 100 || ToatlAfterEdit < 100)
@@ -626,29 +710,92 @@ namespace CMFLMS.Controllers
                         var composit2 = Request.Form["CompositionName2"].ToString();
                         var composit3 = Request.Form["CompositionName3"].ToString();
                         var composit4 = Request.Form["CompositionName4"].ToString();
-                        var composit5 = Request.Form["CompositionName5"].ToString();
+                        //var composit5 = Request.Form["CompositionName5"].ToString();
 
-                        if ((composit1 == composit2 && composit1 != "" && composit2 != "") || (composit1 == composit3 && composit3 != "") || (composit1 == composit4 && composit4 != "") || (composit1 == composit5 && composit5 != ""))
+                        //if ((composit1 == composit2 && composit1 != "" && composit2 != "") || (composit1 == composit3 && composit3 != "") || (composit1 == composit4 && composit4 != "") || (composit1 == composit5 && composit5 != ""))
+                        //{
+                        //    return RedirectToAction("CompositionSelected");
+                        //}
+                        //if ((composit2 == composit1 && composit2 != "" && composit1 != "") || (composit2 == composit3 && composit3 != "") || (composit2 == composit4 && composit4 != "") || (composit2 == composit5 && composit5 != ""))
+                        //{
+                        //    return RedirectToAction("CompositionSelected");
+                        //}
+                        //if ((composit3 == composit1 && composit3 != "" && composit1 != "") || (composit3 == composit2 && composit2 != "") || (composit3 == composit4 && composit4 != "") || (composit2 == composit5 && composit5 != ""))
+                        //{
+                        //    return RedirectToAction("CompositionSelected");
+                        //}
+                        //if ((composit4 == composit1 && composit4 != "" && composit1 != "") || (composit4 == composit2 && composit2 != "") || (composit4 == composit3 && composit3 != "") || (composit4 == composit5 && composit5 != ""))
+                        //{
+                        //    return RedirectToAction("CompositionSelected");
+
+                        //}
+                        //if ((composit5 == composit1 && composit5 != "" && composit1 != "") || (composit5 == composit2 && composit2 != "") || (composit5 == composit3 && composit3 != "") || (composit5 == composit4 && composit4 != ""))
+                        //{
+                        //    return RedirectToAction("CompositionSelected");
+                        //}
+
+                        //if (composit1 == "" || composit1 == "N/A" || composit1 == "n/a" || fabrics.Compisition1 == null || fabrics.Compisition1 == "0")
+                        //{
+                        //    fabrics.Compisition1 = RetCom1;
+                        //}
+                        //else
+                        //{
+                        //    fabrics.Compisition1 = composit1 + " " + "-" + " " + fabrics.Compisition1 + "%";
+                        //}
+                        //if (composit2 == "" || composit2 == "N/A" || composit2 == "n/a" || fabrics.Compisition2 == null || fabrics.Compisition2 == "0")
+                        //{
+                        //    fabrics.Compisition2 = RetCom2;
+                        //}
+                        //else
+                        //{
+                        //    fabrics.Compisition2 = composit2 + " " + "-" + " " + fabrics.Compisition2 + "%";
+                        //}
+                        //if (composit3 == "" || composit3 == "N/A" || composit3 == "n/a" || fabrics.Compisition3 == null || fabrics.Compisition3 == "0")
+                        //{
+                        //    fabrics.Compisition3 = RetCom3;
+                        //}
+                        //else
+                        //{
+                        //    fabrics.Compisition3 = composit3 + " " + "-" + " " + fabrics.Compisition3 + "%";
+                        //}
+                        //if (composit4 == "" || composit4 == "N/A" || composit4 == "n/a" || fabrics.Compisition4 == null || fabrics.Compisition4 == "0")
+                        //{
+                        //    fabrics.Compisition4 = RetCom4;
+                        //}
+                        //else
+                        //{
+                        //    fabrics.Compisition4 = composit4 + " " + "-" + " " + fabrics.Compisition4 + "%";
+                        //}
+                        //if (composit5 == "" || composit5 == "N/A" || composit5 == "n/a" || fabrics.Compisition5 == null || fabrics.Compisition5 == "0")
+                        //{
+                        //    fabrics.Compisition5 = RetCom5;
+                        //}
+                        //else
+                        //{
+                        //    fabrics.Compisition5 = composit5 + " " + "-" + " " + fabrics.Compisition5 + "%";
+                        //}
+
+                        if ((composit1 == composit2 && composit1 != "" && composit2 != "") || (composit1 == composit3 && composit3 != "") || (composit1 == composit4 && composit4 != ""))
                         {
                             return RedirectToAction("CompositionSelected");
                         }
-                        if ((composit2 == composit1 && composit2 != "" && composit1 != "") || (composit2 == composit3 && composit3 != "") || (composit2 == composit4 && composit4 != "") || (composit2 == composit5 && composit5 != ""))
+                        if ((composit2 == composit1 && composit2 != "" && composit1 != "") || (composit2 == composit3 && composit3 != "") || (composit2 == composit4 && composit4 != ""))
                         {
                             return RedirectToAction("CompositionSelected");
                         }
-                        if ((composit3 == composit1 && composit3 != "" && composit1 != "") || (composit3 == composit2 && composit2 != "") || (composit3 == composit4 && composit4 != "") || (composit2 == composit5 && composit5 != ""))
+                        if ((composit3 == composit1 && composit3 != "" && composit1 != "") || (composit3 == composit2 && composit2 != "") || (composit3 == composit4 && composit4 != ""))
                         {
                             return RedirectToAction("CompositionSelected");
                         }
-                        if ((composit4 == composit1 && composit4 != "" && composit1 != "") || (composit4 == composit2 && composit2 != "") || (composit4 == composit3 && composit3 != "") || (composit4 == composit5 && composit5 != ""))
+                        if ((composit4 == composit1 && composit4 != "" && composit1 != "") || (composit4 == composit2 && composit2 != "") || (composit4 == composit3 && composit3 != ""))
                         {
                             return RedirectToAction("CompositionSelected");
 
                         }
-                        if ((composit5 == composit1 && composit5 != "" && composit1 != "") || (composit5 == composit2 && composit2 != "") || (composit5 == composit3 && composit3 != "") || (composit5 == composit4 && composit4 != ""))
-                        {
-                            return RedirectToAction("CompositionSelected");
-                        }
+                        //if ((composit5 == composit1 && composit5 != "" && composit1 != "") || (composit5 == composit2 && composit2 != "") || (composit5 == composit3 && composit3 != "") || (composit5 == composit4 && composit4 != ""))
+                        //{
+                        //    return RedirectToAction("CompositionSelected");
+                        //}
 
                         if (composit1 == "" || composit1 == "N/A" || composit1 == "n/a" || fabrics.Compisition1 == null || fabrics.Compisition1 == "0")
                         {
@@ -682,14 +829,14 @@ namespace CMFLMS.Controllers
                         {
                             fabrics.Compisition4 = composit4 + " " + "-" + " " + fabrics.Compisition4 + "%";
                         }
-                        if (composit5 == "" || composit5 == "N/A" || composit5 == "n/a" || fabrics.Compisition5 == null || fabrics.Compisition5 == "0")
-                        {
-                            fabrics.Compisition5 = RetCom5;
-                        }
-                        else
-                        {
-                            fabrics.Compisition5 = composit5 + " " + "-" + " " + fabrics.Compisition5 + "%";
-                        }
+                        //if (composit5 == "" || composit5 == "N/A" || composit5 == "n/a" || fabrics.Compisition5 == null || fabrics.Compisition5 == "0")
+                        //{
+                        //    fabrics.Compisition5 = RetCom5;
+                        //}
+                        //else
+                        //{
+                        //    fabrics.Compisition5 = composit5 + " " + "-" + " " + fabrics.Compisition5 + "%";
+                        //}
                         if (User.IsInRole("MainAdmin"))
                         {
                             DataSet DSFac = new DataSet();
@@ -731,13 +878,17 @@ namespace CMFLMS.Controllers
                 ViewBag.Compositions2 = new SelectList(db.compositions.OrderBy(c => c.CompositionName), "CompositionName", "CompositionName");
                 ViewBag.Compositions3 = new SelectList(db.compositions.OrderBy(c => c.CompositionName), "CompositionName", "CompositionName");
                 ViewBag.Compositions4 = new SelectList(db.compositions.OrderBy(c => c.CompositionName), "CompositionName", "CompositionName");
-                ViewBag.Compositions5 = new SelectList(db.compositions.OrderBy(c => c.CompositionName), "CompositionName", "CompositionName");
+                //ViewBag.Compositions5 = new SelectList(db.compositions.OrderBy(c => c.CompositionName), "CompositionName", "CompositionName");
+                ViewBag.ProductCatagoryId = new SelectList(db.productCatagories.Where(p => p.IsDeleted == false).OrderBy(p => p.ProductCatagoryName), "ProductCatagoryId", "ProductCatagoryName", fabrics.ProductCatagoryId);
+                ViewBag.SourcingTypeId = new SelectList(db.sourcingTypes.Where(s => s.IsDeleted == false).OrderBy(s => s.SourcingTypeName), "SourcingTypeId", "SourcingTypeName", fabrics.SourcingTypeId);
             }
             catch (Exception ex)
             {
                 ViewBag.Error = ex;
                 ComFabSam.exception = Convert.ToString(ex);
-                ComFabSam.user = Common.UserName;
+                var UserName = Session["username"].ToString();
+                ComFabSam.user = UserName;
+                //ComFabSam.user = Common.UserName;
                 //ComFabSam.user = Session["username"].ToString();
                 ComFabSam.MailSend();
                 RedirectToAction("FabricError");
@@ -756,23 +907,30 @@ namespace CMFLMS.Controllers
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 Fabrics fabrics = db.fabrics.Find(id);
-            try
+            if (fabrics == null)
             {
-                if (fabrics == null)
-                {
-                    return HttpNotFound();
-                }
+                return HttpNotFound();
             }
-            catch (Exception ex)
-            {
-                ViewBag.Error = ex;
-                ComFabSam.exception = Convert.ToString(ex);
-                ComFabSam.user = Common.UserName;
-                //ComFabSam.user = Session["username"].ToString();
-                ComFabSam.MailSend();
-                RedirectToAction("FabricError");
-                //throw;
-            }
+
+            //try
+            //{
+            //    if (fabrics == null)
+            //    {
+            //        return HttpNotFound();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    ViewBag.Error = ex;
+            //    ComFabSam.exception = Convert.ToString(ex);
+            //    var UserName = Session["username"].ToString();
+            //    ComFabSam.user = UserName;
+            //    //ComFabSam.user = Common.UserName;
+            //    //ComFabSam.user = Session["username"].ToString();
+            //    ComFabSam.MailSend();
+            //    RedirectToAction("FabricError");
+            //    //throw;
+            //}
             return View(fabrics);
         }
 
@@ -781,22 +939,31 @@ namespace CMFLMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Fabrics fabrics = db.fabrics.Find(id);
-            try
-            {
-                db.fabrics.Remove(fabrics);
-                db.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                ViewBag.Error = ex;
-                ComFabSam.exception = Convert.ToString(ex);
-                ComFabSam.user = Common.UserName;
-                //ComFabSam.user = Session["username"].ToString();
-                ComFabSam.MailSend();
-                RedirectToAction("FabricError");
-                //throw;
-            }
+            //Fabrics fabrics = db.fabrics.Find(id);
+            //try
+            //{
+            //    var deleteFabris = db.fabrics.Where(f => f.FabricId).FirstorDefault();
+            //    //db.fabrics.Remove(fabrics);
+            //    db.SaveChanges();
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    ViewBag.Error = ex.Message.ToString();
+            //    ComFabSam.exception = Convert.ToString(ex);
+            //    var UserName = Session["username"].ToString();
+            //    ComFabSam.user = UserName;
+            //    //ComFabSam.user = Common.UserName;
+            //    //ComFabSam.user = Session["username"].ToString();
+            //    ComFabSam.MailSend();
+            //    RedirectToAction("FabricError");
+            //    //throw;
+            //}
+            var deleteFabris = db.fabrics.Where(f => f.FabricsId == id).FirstOrDefault();
+            deleteFabris.IsDeleted = Convert.ToBoolean("TRUE");
+            deleteFabris.DeletedDate = DateTime.Now;
+            db.Entry(deleteFabris).State = EntityState.Modified;
+
             if (User.IsInRole("MainAdmin"))
             {
                 return RedirectToAction("MainAdminView");

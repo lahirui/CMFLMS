@@ -1,7 +1,7 @@
 ﻿===============================================LibraryContext================================================
 Enable-Migrations -ContextTypeName LibraryContext -MigrationsDirectory Migrations\LibraryMigrations
 
-add-migration -ConfigurationTypeName CMFLMS.Migrations.LibraryMigrations.Configuration "FinishingCat"
+add-migration -ConfigurationTypeName CMFLMS.Migrations.LibraryMigrations.Configuration "iS DELETED NULLABLE"
 
 update-database -ConfigurationTypeName CMFLMS.Migrations.LibraryMigrations.Configuration
 

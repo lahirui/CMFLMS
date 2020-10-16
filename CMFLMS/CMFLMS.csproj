@@ -508,6 +508,8 @@
     <Content Include="Assets\js\ac-alert.js" />
     <Content Include="Assets\js\dataTables.semanticui.min.js" />
     <Content Include="Assets\js\form-select-custom.js" />
+    <Content Include="Assets\js\jquery-3.3.1.js" />
+    <Content Include="Assets\js\jquery-3.3.1.min.js" />
     <Content Include="Assets\js\jquery.dataTables.min.js" />
     <Content Include="Assets\js\jquery.multi-select.js" />
     <Content Include="Assets\js\jquery.quicksearch.js" />

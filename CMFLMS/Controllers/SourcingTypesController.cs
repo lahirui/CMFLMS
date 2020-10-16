@@ -18,7 +18,8 @@ namespace CMFLMS.Controllers
         // GET: SourcingTypes
         public ActionResult Index()
         {
-            return View(db.sourcingTypes.ToList());
+            var sourcingTypes = db.sourcingTypes.Where(s => s.IsDeleted == false).OrderBy(s => s.SourcingTypeName).ToList();
+            return View(sourcingTypes);
         }
 
         // GET: SourcingTypes/Details/5
@@ -51,6 +52,8 @@ namespace CMFLMS.Controllers
         {
             if (ModelState.IsValid)
             {
+                sourcingType.SourcingTypeName = sourcingType.SourcingTypeName.ToUpper();
+                sourcingType.IsDeleted = Convert.ToBoolean("FALSE");
                 db.sourcingTypes.Add(sourcingType);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -83,6 +86,8 @@ namespace CMFLMS.Controllers
         {
             if (ModelState.IsValid)
             {
+                sourcingType.SourcingTypeName = sourcingType.SourcingTypeName.ToUpper();
+                sourcingType.IsDeleted = Convert.ToBoolean("FALSE");
                 db.Entry(sourcingType).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -110,8 +115,13 @@ namespace CMFLMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            SourcingType sourcingType = db.sourcingTypes.Find(id);
-            db.sourcingTypes.Remove(sourcingType);
+            //SourcingType sourcingType = db.sourcingTypes.Find(id);
+            //db.sourcingTypes.Remove(sourcingType);
+            //db.SaveChanges();
+            var DeleteSource = db.sourcingTypes.Where(s => s.SourcingTypeId == id).First();
+            DeleteSource.IsDeleted = Convert.ToBoolean("TRUE");
+            DeleteSource.DeletedDate = DateTime.Now;
+            db.Entry(DeleteSource).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

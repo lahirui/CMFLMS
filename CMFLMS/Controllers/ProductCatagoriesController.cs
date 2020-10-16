@@ -18,7 +18,8 @@ namespace CMFLMS.Controllers
         // GET: ProductCatagories
         public ActionResult Index()
         {
-            return View(db.productCatagories.ToList());
+            var productCat = db.productCatagories.Where(p => p.IsDeleted == false).OrderBy(p => p.ProductCatagoryName).ToList();
+            return View(productCat);
         }
 
         // GET: ProductCatagories/Details/5
@@ -51,6 +52,9 @@ namespace CMFLMS.Controllers
         {
             if (ModelState.IsValid)
             {
+                productCatagory.ProductCatagoryName = productCatagory.ProductCatagoryName.ToUpper();
+                productCatagory.IsDeleted = Convert.ToBoolean("FALSE");
+
                 db.productCatagories.Add(productCatagory);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -83,6 +87,8 @@ namespace CMFLMS.Controllers
         {
             if (ModelState.IsValid)
             {
+                productCatagory.ProductCatagoryName = productCatagory.ProductCatagoryName.ToUpper();
+                productCatagory.IsDeleted = Convert.ToBoolean("FALSE");
                 db.Entry(productCatagory).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -110,8 +116,13 @@ namespace CMFLMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ProductCatagory productCatagory = db.productCatagories.Find(id);
-            db.productCatagories.Remove(productCatagory);
+            //ProductCatagory productCatagory = db.productCatagories.Find(id);
+            //db.productCatagories.Remove(productCatagory);
+            //db.SaveChanges();
+            var deleteProductCat = db.productCatagories.Where(p => p.ProductCatagoryId == id).First();
+            deleteProductCat.IsDeleted = Convert.ToBoolean("TRUE");
+            deleteProductCat.DeletedDate = DateTime.Now;
+            db.Entry(deleteProductCat).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -26,9 +26,9 @@
                                 </div>
                                 <div class="col-md-1">
                                     <asp:DropDownList ID="ddlFactory" runat="server" CssClass="form-control" Width="200px" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlFactory_SelectedIndexChanged" AutoPostBack="True">
-                                        <Items>
+                                        <%--<Items>
                                             <asp:ListItem Text="Select Factory" Value="" />
-                                        </Items>
+                                        </Items>--%>
                                     </asp:DropDownList>
                                 </div>
                             </div>

@@ -64,7 +64,6 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Samples<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            @*DisplayName, ActionMethod, ControllerName*@
                           
                             @if (User.IsInRole("MainAdmin"))
                             {
@@ -78,7 +77,6 @@
                                     <li>@Html.ActionLink("Enter Samples", "Create", "Fabrics")</li>
                                 }
                                 <li>@Html.ActionLink("View Samples", "Index", "Fabrics")</li>
-                                @*<li>@Html.ActionLink("View Other samples", "OtherFactoryDetails", "Fabrics")</li>*@
                             }
                         </ul>
                     </li>
@@ -86,22 +84,23 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Reports<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            @*DisplayName, ActionMethod, ControllerName*@
+
                             @*<li>@Html.ActionLink("Supplier Report", "SupplierView", "Reports")</li>
-                            <li>@Html.ActionLink("Fabric Report", "FabricView", "Reports")</li>*@
+                            <li>@Html.ActionLink("Fabric Report", "FabricView", "Reports")</li>
                             <li>@Html.ActionLink("Colour Report", "ColourReport", "Colours")</li>
                             <li>@Html.ActionLink("Composition Report", "CompositionReport", "Compositions")</li>
                             <li>@Html.ActionLink("Construction Report", "ConstructionReport", "Constructions")</li>
-                            <li>@Html.ActionLink("Fabric Report", "FabricReport", "Reports")</li>
-                           @*<li>@Html.ActionLink("Fabric Report - To Excel", "FabricReport", "Reports")</li>
+                           <li>@Html.ActionLink("Fabric Report - To Excel", "FabricReport", "Reports")</li>
                             <li>@Html.ActionLink("Fabric Report - Multiple Search", "Report", "Fabrics")</li>
-                            <li>@Html.ActionLink("Fabric Report - Multiple Search", "FabricWebReport", "Reports")</li>*@
+                            <li>@Html.ActionLink("Fabric Report - Multiple Search", "FabricWebReport", "Reports")</li>
                             <li>@Html.ActionLink("Finishing Category Report", "FinishingReport", "FinishCatoes")</li>
                             <li>@Html.ActionLink("Knit Report", "KnitReport", "Knits")</li>
                             <li>@Html.ActionLink("Location Report", "LocationReport", "Locations")</li>
                             <li>@Html.ActionLink("Structure Report", "StructureReport", "Structures")</li>
+                            <li>@Html.ActionLink("Yarn Report", "YarnReport", "Yarns")</li>*@
+                            
                             <li>@Html.ActionLink("Supplier Report", "Report", "Suppliers")</li>
-                            <li>@Html.ActionLink("Yarn Report", "YarnReport", "Yarns")</li>
+                            <li>@Html.ActionLink("Fabric Report", "FabricReport", "Reports")</li>
                         </ul>
                     </li>
                
@@ -111,7 +110,7 @@
         </div>
     </div>
 
-    <div class="container body-content">
+    <div class="container body-content" style="overflow-x:scroll">
         @RenderBody()
         <hr />
         <footer>
@@ -119,13 +118,7 @@
         </footer>
     </div>
 
-    @*<div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2017 - @DateTime.Now.Year | Developed by CMSL-IT | All Rights Reserved | Version 1.1.5.0</p>
-        </footer>
-    </div>*@
+  
 
 
     @Scripts.Render("~/bundles/jquery")

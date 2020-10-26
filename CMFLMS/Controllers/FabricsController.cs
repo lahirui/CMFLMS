@@ -69,7 +69,7 @@ namespace CMFLMS.Controllers
         }
         public ActionResult MainAdminView()
         {
-            var fabrics = db.fabrics.Include(f => f.Colours).Include(f => f.Constructions).Include(f => f.Knits).Include(f => f.Locationss).Include(f => f.Structures).Include(f => f.Suppliers).Include(f => f.Yarns).Include(f => f.Factories).Include(f => f.FabCats).Where(f=>f.IsDeleted==false).OrderBy(f => f.FabricId);//
+            var fabrics = db.fabrics.Include(f => f.Colours).Include(f => f.Constructions).Include(f => f.Knits).Include(f => f.Locationss).Include(f=>f.ProdCatagories).Include(f=>f.SourceTypes).Include(f => f.Structures).Include(f => f.Suppliers).Include(f => f.Yarns).Include(f => f.Factories).Include(f => f.FabCats).Where(f=>f.IsDeleted==false).OrderBy(f => f.FabricId);//
             try
             {
                 using (var con = new LibraryContext())
@@ -94,7 +94,7 @@ namespace CMFLMS.Controllers
         public ActionResult Index()
         {
            
-                var fabrics = db.fabrics.Include(f => f.Colours).Include(f => f.Constructions).Include(f => f.Knits).Include(f => f.Locationss).Include(f => f.Structures).Include(f => f.Suppliers).Include(f => f.Yarns).Include(f => f.Factories).Include(f => f.FabCats).Include(f=>f.FinCategory).Where(f => f.IsDeleted == false).OrderBy(f => f.FabricId);//
+                var fabrics = db.fabrics.Include(f => f.Colours).Include(f => f.Constructions).Include(f => f.Knits).Include(f => f.ProdCatagories).Include(f => f.SourceTypes).Include(f => f.Locationss).Include(f => f.Structures).Include(f => f.Suppliers).Include(f => f.Yarns).Include(f => f.Factories).Include(f => f.FabCats).Include(f=>f.FinCategory).Where(f => f.IsDeleted == false).OrderBy(f => f.FabricId);//
 
             try
             {
@@ -130,9 +130,10 @@ namespace CMFLMS.Controllers
  
         }
         //////Get : Fabrics of other Factories
-        public ActionResult OtherFactoryDetails(int? page)
+        public ActionResult OtherFactoryDetails()
         {
-            var fabrics = db.fabrics.Include(f => f.Colours).Include(f => f.Constructions).Include(f => f.Knits).Include(f => f.Locationss).Include(f => f.Structures).Include(f => f.Suppliers).Include(f => f.Yarns).Include(f => f.Factories).Include(f => f.FabCats).Where(f => f.IsDeleted == false).OrderBy(f => f.FabricId);//
+            //int? page
+            var fabrics = db.fabrics.Include(f => f.Colours).Include(f => f.Constructions).Include(f => f.Knits).Include(f => f.Locationss).Include(f => f.Structures).Include(f => f.ProdCatagories).Include(f => f.SourceTypes).Include(f => f.Suppliers).Include(f => f.Yarns).Include(f => f.Factories).Include(f => f.FabCats).Where(f => f.IsDeleted == false).OrderBy(f => f.FabricId);//
                                                                                                                                                                                                                                                                                                    //var secondUser = Common.UserName;
             var UserName = Session["username"].ToString();
             var secondUser = UserName;
@@ -148,7 +149,8 @@ namespace CMFLMS.Controllers
             }
             DatTotOtherFac = ComFabricSample.ReturnDataset("SELECT * FROM Fabrics INNER JOIN Factories ON Fabrics.FactoryId = Factories.FactoryId WHERE Factories.FactoryName != '" + Convert.ToString(ViewBag.OtherFacFab) + "'");
             ViewBag.OtherFactories = DatTotOtherFac.Tables[0].Rows.Count.ToString();
-            return View(fabrics.ToList().ToPagedList(page ?? 1, 500));
+            //return View(fabrics.ToList().ToPagedList(page ?? 1, 500));
+            return View(fabrics.ToList());
         }
 
         // GET: Fabrics/Details/5

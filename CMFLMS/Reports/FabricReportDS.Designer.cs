@@ -325,6 +325,18 @@ namespace CMFLMS.Reports {
             
             private global::System.Data.DataColumn columnFinishingCategory;
             
+            private global::System.Data.DataColumn columnSourcingRoute;
+            
+            private global::System.Data.DataColumn columnLeadTime;
+            
+            private global::System.Data.DataColumn columnSustainableProduct;
+            
+            private global::System.Data.DataColumn columnYarnGuage;
+            
+            private global::System.Data.DataColumn columnProductCatagoryName;
+            
+            private global::System.Data.DataColumn columnSourcingTypeName;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public FabricReportDSDataTable() {
@@ -544,6 +556,54 @@ namespace CMFLMS.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SourcingRouteColumn {
+                get {
+                    return this.columnSourcingRoute;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn LeadTimeColumn {
+                get {
+                    return this.columnLeadTime;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SustainableProductColumn {
+                get {
+                    return this.columnSustainableProduct;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn YarnGuageColumn {
+                get {
+                    return this.columnYarnGuage;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ProductCatagoryNameColumn {
+                get {
+                    return this.columnProductCatagoryName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SourcingTypeNameColumn {
+                get {
+                    return this.columnSourcingTypeName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -602,7 +662,13 @@ namespace CMFLMS.Reports {
                         string Factory, 
                         string FabricCategory, 
                         string Remarks, 
-                        string FinishingCategory) {
+                        string FinishingCategory, 
+                        string SourcingRoute, 
+                        string LeadTime, 
+                        string SustainableProduct, 
+                        string YarnGuage, 
+                        string ProductCatagoryName, 
+                        string SourcingTypeName) {
                 FabricReportDSRow rowFabricReportDSRow = ((FabricReportDSRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         FabricId,
@@ -627,7 +693,13 @@ namespace CMFLMS.Reports {
                         Factory,
                         FabricCategory,
                         Remarks,
-                        FinishingCategory};
+                        FinishingCategory,
+                        SourcingRoute,
+                        LeadTime,
+                        SustainableProduct,
+                        YarnGuage,
+                        ProductCatagoryName,
+                        SourcingTypeName};
                 rowFabricReportDSRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowFabricReportDSRow);
                 return rowFabricReportDSRow;
@@ -673,6 +745,12 @@ namespace CMFLMS.Reports {
                 this.columnFabricCategory = base.Columns["FabricCategory"];
                 this.columnRemarks = base.Columns["Remarks"];
                 this.columnFinishingCategory = base.Columns["FinishingCategory"];
+                this.columnSourcingRoute = base.Columns["SourcingRoute"];
+                this.columnLeadTime = base.Columns["LeadTime"];
+                this.columnSustainableProduct = base.Columns["SustainableProduct"];
+                this.columnYarnGuage = base.Columns["YarnGuage"];
+                this.columnProductCatagoryName = base.Columns["ProductCatagoryName"];
+                this.columnSourcingTypeName = base.Columns["SourcingTypeName"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -724,6 +802,18 @@ namespace CMFLMS.Reports {
                 base.Columns.Add(this.columnRemarks);
                 this.columnFinishingCategory = new global::System.Data.DataColumn("FinishingCategory", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFinishingCategory);
+                this.columnSourcingRoute = new global::System.Data.DataColumn("SourcingRoute", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSourcingRoute);
+                this.columnLeadTime = new global::System.Data.DataColumn("LeadTime", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLeadTime);
+                this.columnSustainableProduct = new global::System.Data.DataColumn("SustainableProduct", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSustainableProduct);
+                this.columnYarnGuage = new global::System.Data.DataColumn("YarnGuage", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnYarnGuage);
+                this.columnProductCatagoryName = new global::System.Data.DataColumn("ProductCatagoryName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProductCatagoryName);
+                this.columnSourcingTypeName = new global::System.Data.DataColumn("SourcingTypeName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSourcingTypeName);
                 this.ExtendedProperties.Add("Generator_TablePropName", "_FabricReportDS");
                 this.ExtendedProperties.Add("Generator_UserTableName", "FabricReportDS");
             }
@@ -1236,6 +1326,102 @@ namespace CMFLMS.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SourcingRoute {
+                get {
+                    try {
+                        return ((string)(this[this.tableFabricReportDS.SourcingRouteColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SourcingRoute\' in table \'FabricReportDS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableFabricReportDS.SourcingRouteColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string LeadTime {
+                get {
+                    try {
+                        return ((string)(this[this.tableFabricReportDS.LeadTimeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LeadTime\' in table \'FabricReportDS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableFabricReportDS.LeadTimeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SustainableProduct {
+                get {
+                    try {
+                        return ((string)(this[this.tableFabricReportDS.SustainableProductColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SustainableProduct\' in table \'FabricReportDS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableFabricReportDS.SustainableProductColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string YarnGuage {
+                get {
+                    try {
+                        return ((string)(this[this.tableFabricReportDS.YarnGuageColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'YarnGuage\' in table \'FabricReportDS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableFabricReportDS.YarnGuageColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ProductCatagoryName {
+                get {
+                    try {
+                        return ((string)(this[this.tableFabricReportDS.ProductCatagoryNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ProductCatagoryName\' in table \'FabricReportDS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableFabricReportDS.ProductCatagoryNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SourcingTypeName {
+                get {
+                    try {
+                        return ((string)(this[this.tableFabricReportDS.SourcingTypeNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SourcingTypeName\' in table \'FabricReportDS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableFabricReportDS.SourcingTypeNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsFabricIdNull() {
                 return this.IsNull(this.tableFabricReportDS.FabricIdColumn);
             }
@@ -1508,6 +1694,78 @@ namespace CMFLMS.Reports {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetFinishingCategoryNull() {
                 this[this.tableFabricReportDS.FinishingCategoryColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSourcingRouteNull() {
+                return this.IsNull(this.tableFabricReportDS.SourcingRouteColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSourcingRouteNull() {
+                this[this.tableFabricReportDS.SourcingRouteColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsLeadTimeNull() {
+                return this.IsNull(this.tableFabricReportDS.LeadTimeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetLeadTimeNull() {
+                this[this.tableFabricReportDS.LeadTimeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSustainableProductNull() {
+                return this.IsNull(this.tableFabricReportDS.SustainableProductColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSustainableProductNull() {
+                this[this.tableFabricReportDS.SustainableProductColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsYarnGuageNull() {
+                return this.IsNull(this.tableFabricReportDS.YarnGuageColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetYarnGuageNull() {
+                this[this.tableFabricReportDS.YarnGuageColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsProductCatagoryNameNull() {
+                return this.IsNull(this.tableFabricReportDS.ProductCatagoryNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetProductCatagoryNameNull() {
+                this[this.tableFabricReportDS.ProductCatagoryNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSourcingTypeNameNull() {
+                return this.IsNull(this.tableFabricReportDS.SourcingTypeNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSourcingTypeNameNull() {
+                this[this.tableFabricReportDS.SourcingTypeNameColumn] = global::System.Convert.DBNull;
             }
         }
         

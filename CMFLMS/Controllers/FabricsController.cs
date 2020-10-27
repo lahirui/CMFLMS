@@ -459,6 +459,10 @@ namespace CMFLMS.Controllers
                         //}
 
                         fabrics.IsDeleted = Convert.ToBoolean("FALSE");
+                        fabrics.AddedDate = Convert.ToString(DateTime.Now.Date);
+                        fabrics.WidthCm = (fabrics.WidthInches * 2.54);
+                        fabrics.Compisition5 = "N/A";
+                        fabrics.FabCatoId = 1;
                         db.fabrics.Add(fabrics);
                         db.SaveChanges();
                         if (User.IsInRole("MainAdmin"))
@@ -492,8 +496,8 @@ namespace CMFLMS.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Error = ex;
-                ComFabSam.exception= Convert.ToString(ex);
+                ViewBag.Error = ex.Message.ToString();
+                ComFabSam.exception= Convert.ToString(ex.Message.ToString());
                 //ComFabSam.user = Common.UserName;
                 var UserName = Session["username"].ToString();
                 ComFabSam.user = UserName;
@@ -853,6 +857,11 @@ namespace CMFLMS.Controllers
                             }
                             ViewBag.Factorynewid = facId;//Assign factory ID
                         }
+                        fabrics.IsDeleted = Convert.ToBoolean("FALSE");
+                        fabrics.AddedDate = Convert.ToString(DateTime.Now.Date);
+                        fabrics.WidthCm = (fabrics.WidthInches * 2.54);
+                        fabrics.Compisition5 = "N/A";
+                        fabrics.FabCatoId = 1;
 
                         db.Entry(fabrics).State = EntityState.Modified;
                         db.SaveChanges();
@@ -965,7 +974,7 @@ namespace CMFLMS.Controllers
             deleteFabris.IsDeleted = Convert.ToBoolean("TRUE");
             deleteFabris.DeletedDate = DateTime.Now;
             db.Entry(deleteFabris).State = EntityState.Modified;
-
+            db.SaveChanges();
             if (User.IsInRole("MainAdmin"))
             {
                 return RedirectToAction("MainAdminView");

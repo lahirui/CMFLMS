@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="FabricSticker" targetNamespace="http://tempuri.org/FabricSticker.xsd" xmlns:mstns="http://tempuri.org/FabricSticker.xsd" xmlns="http://tempuri.org/FabricSticker.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="FabricSticker" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="FabricSticker" msprop:Generator_UserDSName="FabricSticker">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="FabricSticker" msprop:Generator_TableClassName="FabricStickerDataTable" msprop:Generator_TableVarName="tableFabricSticker" msprop:Generator_RowChangedName="FabricStickerRowChanged" msprop:Generator_TablePropName="_FabricSticker" msprop:Generator_RowDeletingName="FabricStickerRowDeleting" msprop:Generator_RowChangingName="FabricStickerRowChanging" msprop:Generator_RowEvHandlerName="FabricStickerRowChangeEventHandler" msprop:Generator_RowDeletedName="FabricStickerRowDeleted" msprop:Generator_RowClassName="FabricStickerRow" msprop:Generator_UserTableName="FabricSticker" msprop:Generator_RowEvArgName="FabricStickerRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="FabricId" msprop:Generator_ColumnVarNameInTable="columnFabricId" msprop:Generator_ColumnPropNameInRow="FabricId" msprop:Generator_ColumnPropNameInTable="FabricIdColumn" msprop:Generator_UserColumnName="FabricId" type="xs:string" minOccurs="0" />
+              <xs:element name="Quality" msprop:Generator_ColumnVarNameInTable="columnQuality" msprop:Generator_ColumnPropNameInRow="Quality" msprop:Generator_ColumnPropNameInTable="QualityColumn" msprop:Generator_UserColumnName="Quality" type="xs:string" minOccurs="0" />
+              <xs:element name="Supplier" msprop:Generator_ColumnVarNameInTable="columnSupplier" msprop:Generator_ColumnPropNameInRow="Supplier" msprop:Generator_ColumnPropNameInTable="SupplierColumn" msprop:Generator_UserColumnName="Supplier" type="xs:string" minOccurs="0" />
+              <xs:element name="Colour" msprop:Generator_ColumnVarNameInTable="columnColour" msprop:Generator_ColumnPropNameInRow="Colour" msprop:Generator_ColumnPropNameInTable="ColourColumn" msprop:Generator_UserColumnName="Colour" type="xs:string" minOccurs="0" />
+              <xs:element name="WidthInches" msprop:Generator_ColumnVarNameInTable="columnWidthInches" msprop:Generator_ColumnPropNameInRow="WidthInches" msprop:Generator_ColumnPropNameInTable="WidthInchesColumn" msprop:Generator_UserColumnName="WidthInches" type="xs:string" minOccurs="0" />
+              <xs:element name="WidthCm" msprop:Generator_ColumnVarNameInTable="columnWidthCm" msprop:Generator_ColumnPropNameInRow="WidthCm" msprop:Generator_ColumnPropNameInTable="WidthCmColumn" msprop:Generator_UserColumnName="WidthCm" type="xs:string" minOccurs="0" />
+              <xs:element name="Construction" msprop:Generator_ColumnVarNameInTable="columnConstruction" msprop:Generator_ColumnPropNameInRow="Construction" msprop:Generator_ColumnPropNameInTable="ConstructionColumn" msprop:Generator_UserColumnName="Construction" type="xs:string" minOccurs="0" />
+              <xs:element name="Yarn" msprop:Generator_ColumnVarNameInTable="columnYarn" msprop:Generator_ColumnPropNameInRow="Yarn" msprop:Generator_ColumnPropNameInTable="YarnColumn" msprop:Generator_UserColumnName="Yarn" type="xs:string" minOccurs="0" />
+              <xs:element name="Structure" msprop:Generator_ColumnVarNameInTable="columnStructure" msprop:Generator_ColumnPropNameInRow="Structure" msprop:Generator_ColumnPropNameInTable="StructureColumn" msprop:Generator_UserColumnName="Structure" type="xs:string" minOccurs="0" />
+              <xs:element name="FinishingCatagory" msprop:Generator_ColumnVarNameInTable="columnFinishingCatagory" msprop:Generator_ColumnPropNameInRow="FinishingCatagory" msprop:Generator_ColumnPropNameInTable="FinishingCatagoryColumn" msprop:Generator_UserColumnName="FinishingCatagory" type="xs:string" minOccurs="0" />
+              <xs:element name="SourcingRoute" msprop:Generator_ColumnVarNameInTable="columnSourcingRoute" msprop:Generator_ColumnPropNameInRow="SourcingRoute" msprop:Generator_ColumnPropNameInTable="SourcingRouteColumn" msprop:Generator_UserColumnName="SourcingRoute" type="xs:string" minOccurs="0" />
+              <xs:element name="SustainableProduct" msprop:Generator_ColumnVarNameInTable="columnSustainableProduct" msprop:Generator_ColumnPropNameInRow="SustainableProduct" msprop:Generator_ColumnPropNameInTable="SustainableProductColumn" msprop:Generator_UserColumnName="SustainableProduct" type="xs:string" minOccurs="0" />
+              <xs:element name="Price" msprop:Generator_ColumnVarNameInTable="columnPrice" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" msprop:Generator_UserColumnName="Price" type="xs:string" minOccurs="0" />
+              <xs:element name="Remarks" msprop:Generator_ColumnVarNameInTable="columnRemarks" msprop:Generator_ColumnPropNameInRow="Remarks" msprop:Generator_ColumnPropNameInTable="RemarksColumn" msprop:Generator_UserColumnName="Remarks" type="xs:string" minOccurs="0" />
+              <xs:element name="Composition" msprop:Generator_ColumnVarNameInTable="columnComposition" msprop:Generator_ColumnPropNameInRow="Composition" msprop:Generator_ColumnPropNameInTable="CompositionColumn" msprop:Generator_UserColumnName="Composition" type="xs:string" minOccurs="0" />
+              <xs:element name="Location" msprop:Generator_ColumnVarNameInTable="columnLocation" msprop:Generator_ColumnPropNameInRow="Location" msprop:Generator_ColumnPropNameInTable="LocationColumn" msprop:Generator_UserColumnName="Location" type="xs:string" minOccurs="0" />
+              <xs:element name="Weight" msprop:Generator_ColumnVarNameInTable="columnWeight" msprop:Generator_ColumnPropNameInRow="Weight" msprop:Generator_ColumnPropNameInTable="WeightColumn" msprop:Generator_UserColumnName="Weight" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

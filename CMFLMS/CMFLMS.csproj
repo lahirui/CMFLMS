@@ -420,6 +420,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FabricReportDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Reports\FabricSampleSticker.aspx.cs">
+      <DependentUpon>FabricSampleSticker.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\FabricSampleSticker.aspx.designer.cs">
+      <DependentUpon>FabricSampleSticker.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\FabricSticker.cs">
+      <DependentUpon>FabricSticker.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\FabricSticker.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FabricSticker.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reports\FabricWebReport.aspx.cs">
       <DependentUpon>FabricWebReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -601,6 +616,7 @@
     <Content Include="Pictures\OtherFac.PNG" />
     <Content Include="Pictures\Reports.PNG" />
     <Content Include="Reports\FabricReport.aspx" />
+    <Content Include="Reports\FabricSampleSticker.aspx" />
     <Content Include="Reports\FabricWebReport.aspx" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
@@ -673,6 +689,17 @@
     </None>
     <Content Include="Reports\FabricReportDS.xss">
       <DependentUpon>FabricReportDS.xsd</DependentUpon>
+    </Content>
+    <Content Include="Reports\FabricSticker.xsc">
+      <DependentUpon>FabricSticker.xsd</DependentUpon>
+    </Content>
+    <None Include="Reports\FabricSticker.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FabricSticker.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reports\FabricSticker.xss">
+      <DependentUpon>FabricSticker.xsd</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jQuer.UI\AUTHORS.txt" />
@@ -845,6 +872,7 @@
     <Content Include="Views\SourcingTypes\Details.cshtml" />
     <Content Include="Views\SourcingTypes\Edit.cshtml" />
     <Content Include="Views\SourcingTypes\Index.cshtml" />
+    <Content Include="Views\Reports\FabricSticker.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -971,6 +999,7 @@
       <DependentUpon>202010150620077_iS DELETED NULLABLE.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\FabricReportWizard.rdlc" />
+    <EmbeddedResource Include="Reports\FabricSticker.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -31,5 +31,10 @@ namespace CMFLMS.Controllers
         {
             return View();
         }
+
+        public ActionResult FabricSticker()
+        {
+            return View();
+        }
     }
 }

@@ -1396,7 +1396,11 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=IIF(Fields!SourcingRoute.Value="True","GSP","NonGSP")</Value>
+                              <Value>=SWITCH(
+Fields!SourcingRoute.Value="","",
+Fields!SourcingRoute.Value="True","GSP",
+Fields!SourcingRoute.Value="False","NonGSP"
+)</Value>
                               <Style>
                                 <FontStyle>Normal</FontStyle>
                                 <FontFamily>Georgia</FontFamily>
@@ -1431,7 +1435,11 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=IIF(Fields!SustainableProduct.Value="True","Yes","No")</Value>
+                              <Value>=SWITCH(
+Fields!SustainableProduct.Value="","",
+Fields!SustainableProduct.Value="True","Yes",
+Fields!SustainableProduct.Value="False","No"
+)</Value>
                               <Style>
                                 <FontStyle>Normal</FontStyle>
                                 <FontFamily>Georgia</FontFamily>
@@ -1455,6 +1463,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>

@@ -419,6 +419,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FabricReportDS.xsd</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Reports\FabricSampleSticker.aspx.cs">
       <DependentUpon>FabricSampleSticker.aspx</DependentUpon>
@@ -429,11 +430,13 @@
     </Compile>
     <Compile Include="Reports\FabricSticker.cs">
       <DependentUpon>FabricSticker.xsd</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Reports\FabricSticker.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FabricSticker.xsd</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Reports\FabricWebReport.aspx.cs">
       <DependentUpon>FabricWebReport.aspx</DependentUpon>
@@ -681,25 +684,31 @@
     <None Include="Properties\PublishProfiles\FLMS.pubxml" />
     <Content Include="Reports\FabricReportDS.xsc">
       <DependentUpon>FabricReportDS.xsd</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Reports\FabricReportDS.xsd">
+    <Content Include="Reports\FabricReportDS.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>FabricReportDS.Designer.cs</LastGenOutput>
-    </None>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Reports\FabricReportDS.xss">
       <DependentUpon>FabricReportDS.xsd</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Reports\FabricSticker.xsc">
       <DependentUpon>FabricSticker.xsd</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Reports\FabricSticker.xsd">
+    <Content Include="Reports\FabricSticker.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>FabricSticker.Designer.cs</LastGenOutput>
-    </None>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Reports\FabricSticker.xss">
       <DependentUpon>FabricSticker.xsd</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jQuer.UI\AUTHORS.txt" />
@@ -998,8 +1007,12 @@
     <EmbeddedResource Include="Migrations\LibraryMigrations\202010150620077_iS DELETED NULLABLE.resx">
       <DependentUpon>202010150620077_iS DELETED NULLABLE.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\FabricReportWizard.rdlc" />
-    <EmbeddedResource Include="Reports\FabricSticker.rdlc" />
+    <Content Include="Reports\FabricReportWizard.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\FabricSticker.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

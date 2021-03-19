@@ -1397,7 +1397,7 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=SWITCH(
-Fields!SourcingRoute.Value="","",
+Fields!SourcingRoute.Value="","N/A",
 Fields!SourcingRoute.Value="True","GSP",
 Fields!SourcingRoute.Value="False","NonGSP"
 )</Value>
@@ -1436,7 +1436,7 @@ Fields!SourcingRoute.Value="False","NonGSP"
                           <TextRuns>
                             <TextRun>
                               <Value>=SWITCH(
-Fields!SustainableProduct.Value="","",
+Fields!SustainableProduct.Value="","N/A",
 Fields!SustainableProduct.Value="True","Yes",
 Fields!SustainableProduct.Value="False","No"
 )</Value>
@@ -1463,7 +1463,6 @@ Fields!SustainableProduct.Value="False","No"
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -2080,7 +2079,7 @@ Fields!SustainableProduct.Value="False","No"
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!LeadTime.Value</Value>
+                              <Value>=IIF(Fields!LeadTime.Value="","N/A",Fields!LeadTime.Value)</Value>
                               <Style>
                                 <FontStyle>Normal</FontStyle>
                                 <FontFamily>Georgia</FontFamily>
@@ -2115,7 +2114,7 @@ Fields!SustainableProduct.Value="False","No"
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!YarnGuage.Value</Value>
+                              <Value>=IIF(Fields!YarnGuage.Value="","N/A",Fields!YarnGuage.Value)</Value>
                               <Style>
                                 <FontStyle>Normal</FontStyle>
                                 <FontFamily>Georgia</FontFamily>
@@ -2139,6 +2138,7 @@ Fields!SustainableProduct.Value="False","No"
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
